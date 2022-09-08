@@ -13,27 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.micronaut.inject.processing;
+package io.micronaut.inject.annotation;
 
-import io.micronaut.core.annotation.AnnotationUtil;
+import io.micronaut.core.annotation.Internal;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * Constants for processed type names.
+ * Internal method marks a type, method or a field for validation.
  *
- * @author graemerocher
- * @since 1.0
- * @deprecated Use {@link io.micronaut.core.annotation.AnnotationUtil} instead
+ * @author Denis Stepanov
+ * @since 4.0.0
  */
-@Deprecated
-public interface ProcessedTypes {
-
-    /**
-     * Constant for {@link jakarta.annotation.PostConstruct} annotation.
-     */
-    String POST_CONSTRUCT = AnnotationUtil.POST_CONSTRUCT;
-
-    /**
-     * Constant for {@link jakarta.annotation.PreDestroy}} annotation.
-     */
-    String PRE_DESTROY = AnnotationUtil.POST_CONSTRUCT;
+@Documented
+@Retention(SOURCE)
+@Target({ElementType.METHOD, ElementType.TYPE, ElementType.FIELD})
+@Internal
+public @interface RequiresValidation {
 }
